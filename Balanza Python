@@ -1,0 +1,70 @@
+import random
+import time
+
+piedras = [1000]*9 + [980]
+random.shuffle(piedras)
+piedra1, piedra2, piedra3, piedra4, piedra5, piedra6, piedra7, piedra8, piedra9, piedra10 = piedras
+
+
+def balanza(intentos):
+    suma_balizq = 0
+    suma_balder = 0
+    while(intentos > 0):
+        bal_izq = input("¿Qué piedras quieres poner en la balanza izquierda? ")
+        balizq = list(map(int, bal_izq.split(",")))
+        for i in range(len(balizq)):
+            suma_balizq += int(piedras[balizq[i]-1])
+        bal_der = input("¿Y cuáles al plato derecho? ")
+        balder = list(map(int, bal_der.split(",")))
+        for j in range(len(balder)):
+            suma_balder += int(piedras[balder[j]-1])
+        if suma_balder == suma_balizq:
+            print("Las balanzas se equilibran")
+        elif suma_balder > suma_balizq:
+            print("La balanza se inclina a la derecha")
+        else:
+            print("La balanza se inclina a la izquierda")
+        
+            
+
+        suma_balizq = 0
+        suma_balder = 0
+        intentos -= 1
+    
+    respuesta = input("¿Cuál es la piedra que pesa menos? ")
+    if piedras[int(respuesta)-1] == 980:
+        print("Felicidades joven, puede llevarse el oro")
+    else: 
+        print("Se ha equivocado, siga su camino.")
+
+
+
+print("Vas caminando por un río, recogiendo piedras.")
+time.sleep(1)
+print("Al llenar tu cubeta, un anciano se acerca a revisarlas.")
+time.sleep(1.5)
+print("Después de separar 10, te comenta que son de oro y para conservarlas")
+time.sleep(1.5)
+print("deberás jugar con él, ya que 9 pesan 1 kg y la otra 980 gramos.")
+time.sleep(1.5)
+print("Indetectable a simple vista, solo tienes una balanza de platos,")
+time.sleep(1.5)
+print("además, deberás lanzar un dado para obtener una cantidad de intentos.")
+time.sleep(1.5)
+respuesta = input("¿Quieres conservar las piedras? ")
+
+if respuesta.lower() == "si":
+    intentos = random.randint(1, 6)
+    if intentos == 1:
+        print(f"Has lanzado el dado y ha salido el número {intentos}, tienes {intentos} intento")
+    else:
+        print(f"Has lanzado el dado y ha salido el número {intentos}, tienes {intentos} intentos")
+    balanza(intentos)
+else:
+    print("Sigue tu camino, viajero.")
+
+
+
+
+
+
